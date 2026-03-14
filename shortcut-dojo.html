@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shortcut Dojo</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --accent: #58a6ff;
+  --green: #3fb950;
+  --red: #f85149;
+  --orange: #e3b341;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.screen { width: 100%; max-width: 580px; animation: fadeIn 0.2s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; } }
+
+h1 { font-size: 2rem; margin-bottom: 6px; }
+.subtitle { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
+
+.categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.cat-card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.cat-card.selected { border-color: var(--accent); background: rgba(88,166,255,0.08); }
+.cat-card h3 { font-size: 0.9rem; margin-bottom: 3px; }
+.cat-card p { color: var(--muted); font-size: 0.78rem; }
+
+.options-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.options-row select {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.85rem;
+}
+
+.btn {
+  background: var(--accent);
+  color: #0d1117;
+  border: none;
+  border-radius: 6px;
+  padding: 11px 24px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.15s;
+}
+.btn:hover { opacity: 0.85; }
+.btn.ghost {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-weight: 400;
+  margin-top: 10px;
+}
+.best { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 10px; }
+
+/* Game */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.topbar strong { color: var(--text); }
+.streak-badge {
+  background: rgba(227,179,65,0.15);
+  color: var(--orange);
+  border: 1px solid rgba(227,179,65,0.3);
+  border-radius: 99px;
+  padding: 2px 10px;
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+.progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin-bottom: 28px; }
+.progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.35s ease; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 28px;
+  margin-bottom: 14px;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.card.correct { border-color: var(--green); }
+.card.wrong   { border-color: var(--red); }
+
+.cat-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 10px;
+}
+.action-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 22px;
+}
+
+.keys {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 40px;
+  align-items: center;
+}
+.key {
+  background: #21262d;
+  border: 1px solid #484f58;
+  border-bottom: 3px solid #484f58;
+  border-radius: 6px;
+  padding: 5px 11px;
+  font-size: 0.95rem;
+  min-width: 38px;
+  text-align: center;
+  color: var(--text);
+}
+.key.dim    { color: var(--muted); border-style: dashed; background: transparent; border-bottom-style: dashed; }
+.key.good   { border-color: var(--green);  color: var(--green);  background: rgba(63,185,80,0.1);  border-bottom-color: var(--green); }
+.key.bad    { border-color: var(--red);    color: var(--red);    background: rgba(248,81,73,0.1);   border-bottom-color: var(--red); }
+.key-sep    { color: var(--muted); align-self: center; font-size: 0.85rem; }
+
+.text-input-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.text-input-wrap input {
+  background: #21262d;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 7px 13px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+  width: 200px;
+  text-align: center;
+}
+.text-input-wrap input:focus { outline: 1px solid var(--accent); }
+.text-input-wrap button {
+  background: var(--accent);
+  color: #0d1117;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.feedback {
+  font-size: 0.88rem;
+  min-height: 1.4rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.feedback.ok  { color: var(--green); }
+.feedback.err { color: var(--red); }
+
+.action-row { display: flex; gap: 10px; }
+.action-row .btn { font-size: 0.85rem; font-weight: 400; }
+.action-row .btn.ghost { margin-top: 0; }
+
+/* Results */
+.big-score { font-size: 3.5rem; font-weight: 700; color: var(--accent); text-align: center; margin: 12px 0; }
+.comment   { text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 22px; }
+.breakdown { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 22px; }
+.row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+.row:last-child { border-bottom: none; }
+.row .label { color: var(--muted); }
+.row .val   { font-weight: 600; }
+
+#capture {
+  position: fixed; opacity: 0; pointer-events: none;
+  top: 0; left: 0; width: 1px; height: 1px;
+}
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="s-home" class="screen">
+  <h1>Shortcut Dojo</h1>
+  <p class="subtitle">The game shows you an <strong>action</strong> — you press the actual keyboard shortcut for it. That's it.</p>
+
+  <p style="color:var(--muted);font-size:0.8rem;margin-bottom:10px;">Choose categories:</p>
+  <div class="categories">
+    <div class="cat-card selected" data-cat="terminal"><h3>Terminal</h3><p>Bash/Zsh navigation &amp; control</p></div>
+    <div class="cat-card selected" data-cat="vscode"><h3>VS Code</h3><p>Editor commands &amp; navigation</p></div>
+    <div class="cat-card selected" data-cat="macos"><h3>macOS</h3><p>System &amp; window management</p></div>
+    <div class="cat-card selected" data-cat="browser"><h3>Browser</h3><p>Chrome/Firefox navigation</p></div>
+  </div>
+
+  <div class="options-row">
+    <span>Questions per round:</span>
+    <select id="round-size">
+      <option value="10">10</option>
+      <option value="15" selected>15</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+    </select>
+  </div>
+
+  <button class="btn" id="start-btn">Start Training</button>
+  <div class="best" id="best-display"></div>
+</div>
+
+<!-- GAME -->
+<div id="s-game" class="screen" hidden>
+  <div class="topbar">
+    <span>Question <strong id="q-cur">1</strong> / <strong id="q-tot">15</strong></span>
+    <span id="streak-badge" class="streak-badge" style="display:none"></span>
+    <span>Score: <strong id="score-disp">0</strong></span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+
+  <div class="card" id="card">
+    <div class="cat-label" id="cat-label"></div>
+    <div style="font-size:0.75rem;color:var(--muted);margin-bottom:6px;" id="direction-label">press the shortcut for:</div>
+    <div class="action-text" id="action-text">–</div>
+    <div id="keys-label" style="font-size:0.72rem;color:var(--muted);margin-bottom:6px;display:none"></div>
+    <div class="keys" id="keys"></div>
+  </div>
+
+  <div class="feedback" id="feedback"></div>
+
+  <div class="action-row">
+    <button class="btn ghost" id="hint-btn">Show Hint (breaks streak)</button>
+    <button class="btn ghost" id="skip-btn">Skip</button>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="s-results" class="screen" hidden>
+  <h1>Round Complete</h1>
+  <div class="big-score" id="final-score"></div>
+  <p class="comment" id="comment"></p>
+  <div class="breakdown" id="breakdown"></div>
+  <button class="btn" id="again-btn">Play Again</button>
+  <button class="btn ghost" id="home-btn">Change Categories</button>
+</div>
+
+<input id="capture" type="text" autocomplete="off" spellcheck="false">
+
+<script>
+// ─── Shortcut database ───────────────────────────────────────────────────────
+// canonical: modifiers sorted ctrl>cmd>alt>shift, then key
+// textMode: true for shortcuts the browser would intercept (cmd+w, cmd+t, cmd+q, cmd+n)
+const DB = [
+  // Terminal
+  {cat:'terminal',lbl:'Terminal',action:'Go to beginning of line',          keys:['Ctrl','A'], c:'ctrl+a'},
+  {cat:'terminal',lbl:'Terminal',action:'Go to end of line',                keys:['Ctrl','E'], c:'ctrl+e'},
+  {cat:'terminal',lbl:'Terminal',action:'Clear the screen',                 keys:['Ctrl','L'], c:'ctrl+l'},
+  {cat:'terminal',lbl:'Terminal',action:'Cancel current command',           keys:['Ctrl','C'], c:'ctrl+c'},
+  {cat:'terminal',lbl:'Terminal',action:'Search command history',           keys:['Ctrl','R'], c:'ctrl+r'},
+  {cat:'terminal',lbl:'Terminal',action:'Delete to end of line',            keys:['Ctrl','K'], c:'ctrl+k'},
+  {cat:'terminal',lbl:'Terminal',action:'Delete to beginning of line',      keys:['Ctrl','U'], c:'ctrl+u'},
+  {cat:'terminal',lbl:'Terminal',action:'Delete word before cursor',        keys:['Ctrl','W'], c:'ctrl+w'},
+  {cat:'terminal',lbl:'Terminal',action:'Suspend current process',          keys:['Ctrl','Z'], c:'ctrl+z'},
+  {cat:'terminal',lbl:'Terminal',action:'Exit shell / send EOF',            keys:['Ctrl','D'], c:'ctrl+d'},
+  {cat:'terminal',lbl:'Terminal',action:'Move cursor forward one word',     keys:['Alt','F'],  c:'alt+f'},
+  {cat:'terminal',lbl:'Terminal',action:'Move cursor backward one word',    keys:['Alt','B'],  c:'alt+b'},
+  {cat:'terminal',lbl:'Terminal',action:'Previous command in history',      keys:['↑'],        c:'arrowup'},
+  {cat:'terminal',lbl:'Terminal',action:'Swap current and previous char',   keys:['Ctrl','T'], c:'ctrl+t'},
+
+  // VS Code
+  {cat:'vscode',lbl:'VS Code',action:'Open Command Palette',               keys:['⌘','⇧','P'],   c:'cmd+shift+p'},
+  {cat:'vscode',lbl:'VS Code',action:'Quick Open — go to file',            keys:['⌘','P'],        c:'cmd+p'},
+  {cat:'vscode',lbl:'VS Code',action:'Toggle integrated terminal',         keys:['Ctrl','`'],     c:'ctrl+`'},
+  {cat:'vscode',lbl:'VS Code',action:'Toggle sidebar',                     keys:['⌘','B'],        c:'cmd+b'},
+  {cat:'vscode',lbl:'VS Code',action:'Toggle line comment',                keys:['⌘','/'],        c:'cmd+/'},
+  {cat:'vscode',lbl:'VS Code',action:'Delete entire line',                 keys:['⌘','⇧','K'],    c:'cmd+shift+k'},
+  {cat:'vscode',lbl:'VS Code',action:'Duplicate line down',                keys:['⌥','⇧','↓'],    c:'alt+shift+arrowdown'},
+  {cat:'vscode',lbl:'VS Code',action:'Move line up',                       keys:['⌥','↑'],        c:'alt+arrowup'},
+  {cat:'vscode',lbl:'VS Code',action:'Move line down',                     keys:['⌥','↓'],        c:'alt+arrowdown'},
+  {cat:'vscode',lbl:'VS Code',action:'Select next occurrence of selection',keys:['⌘','D'],        c:'cmd+d'},
+  {cat:'vscode',lbl:'VS Code',action:'Format document',                    keys:['⌥','⇧','F'],    c:'alt+shift+f'},
+  {cat:'vscode',lbl:'VS Code',action:'Go to definition',                   keys:['F12'],          c:'f12'},
+  {cat:'vscode',lbl:'VS Code',action:'Rename symbol',                      keys:['F2'],           c:'f2'},
+  {cat:'vscode',lbl:'VS Code',action:'Find in file',                       keys:['⌘','F'],        c:'cmd+f'},
+  {cat:'vscode',lbl:'VS Code',action:'Search across all files',            keys:['⌘','⇧','F'],    c:'cmd+shift+f'},
+  {cat:'vscode',lbl:'VS Code',action:'Split editor right',                 keys:['⌘','\\'],       c:'cmd+\\'},
+  {cat:'vscode',lbl:'VS Code',action:'Close current editor tab',           keys:['⌘','W'],        c:'cmd+w', textMode:true},
+  {cat:'vscode',lbl:'VS Code',action:'Toggle Problems panel',              keys:['⌘','⇧','M'],    c:'cmd+shift+m'},
+  {cat:'vscode',lbl:'VS Code',action:'Go to line number',                  keys:['Ctrl','G'],     c:'ctrl+g'},
+  {cat:'vscode',lbl:'VS Code',action:'Open keyboard shortcuts',            keys:['⌘','K','⌘','S'],c:'cmd+k', textMode:true},
+
+  // macOS — all textMode because OS intercepts these before the browser can
+  {cat:'macos',lbl:'macOS',action:'Open Spotlight',                        keys:['⌘','Space'],    c:'cmd+space',       textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Switch to next app',                    keys:['⌘','Tab'],      c:'cmd+tab',         textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Switch windows of same app',            keys:['⌘','`'],        c:'cmd+`',           textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Screenshot — save selection to file',   keys:['⌘','⇧','4'],    c:'cmd+shift+4',     textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Screenshot — selection to clipboard',   keys:['⌘','⌃','⇧','4'],c:'cmd+ctrl+shift+4',textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Hide current app',                      keys:['⌘','H'],        c:'cmd+h',           textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Minimize window to Dock',               keys:['⌘','M'],        c:'cmd+m',           textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Mission Control — show all windows',    keys:['⌃','↑'],        c:'ctrl+arrowup',    textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Force Quit dialog',                     keys:['⌘','⌥','Esc'],  c:'cmd+alt+escape',  textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Emoji &amp; Symbols picker',            keys:['⌘','⌃','Space'],c:'cmd+ctrl+space',  textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Lock screen',                           keys:['⌘','⌃','Q'],    c:'cmd+ctrl+q',      textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Open app Preferences / Settings',       keys:['⌘',','],        c:'cmd+,',           textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Quit application',                      keys:['⌘','Q'],        c:'cmd+q',           textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Undo',                                  keys:['⌘','Z'],        c:'cmd+z',           textMode:true},
+  {cat:'macos',lbl:'macOS',action:'Redo',                                  keys:['⌘','⇧','Z'],    c:'cmd+shift+z',     textMode:true},
+
+  // Browser
+  {cat:'browser',lbl:'Browser',action:'Focus the address bar',             keys:['⌘','L'],        c:'cmd+l'},
+  {cat:'browser',lbl:'Browser',action:'Open a new tab',                    keys:['⌘','T'],        c:'cmd+t', textMode:true},
+  {cat:'browser',lbl:'Browser',action:'Reopen last closed tab',            keys:['⌘','⇧','T'],    c:'cmd+shift+t'},
+  {cat:'browser',lbl:'Browser',action:'Close current tab',                 keys:['⌘','W'],        c:'cmd+w', textMode:true},
+  {cat:'browser',lbl:'Browser',action:'Reload page',                       keys:['⌘','R'],        c:'cmd+r'},
+  {cat:'browser',lbl:'Browser',action:'Hard reload (bypass cache)',        keys:['⌘','⇧','R'],    c:'cmd+shift+r'},
+  {cat:'browser',lbl:'Browser',action:'Open DevTools',                     keys:['⌘','⌥','I'],    c:'cmd+alt+i'},
+  {cat:'browser',lbl:'Browser',action:'Find text on page',                 keys:['⌘','F'],        c:'cmd+f'},
+  {cat:'browser',lbl:'Browser',action:'Go to next tab',                    keys:['⌘','⌥','→'],    c:'cmd+alt+arrowright'},
+  {cat:'browser',lbl:'Browser',action:'Go to previous tab',               keys:['⌘','⌥','←'],    c:'cmd+alt+arrowleft'},
+  {cat:'browser',lbl:'Browser',action:'Navigate back',                     keys:['⌘','['],        c:'cmd+['},
+  {cat:'browser',lbl:'Browser',action:'Navigate forward',                  keys:['⌘',']'],        c:'cmd+]'},
+  {cat:'browser',lbl:'Browser',action:'Bookmark current page',             keys:['⌘','D'],        c:'cmd+d'},
+  {cat:'browser',lbl:'Browser',action:'Open new incognito window',         keys:['⌘','⇧','N'],    c:'cmd+shift+n'},
+  {cat:'browser',lbl:'Browser',action:'Open new window',                   keys:['⌘','N'],        c:'cmd+n', textMode:true},
+];
+
+// ─── State ───────────────────────────────────────────────────────────────────
+const st = {
+  cats: new Set(['terminal','vscode','macos','browser']),
+  queue: [], idx: 0, roundSize: 15,
+  score: 0, streak: 0, maxStreak: 0, correct: 0,
+  hintUsed: false, answered: false, waiting: false,
+  results: [],
+};
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+function norm(s) {
+  const order = ['ctrl','cmd','alt','shift'];
+  const parts = s.toLowerCase()
+    .replace(/command|meta|⌘/g,'cmd')
+    .replace(/control|⌃/g,'ctrl')
+    .replace(/option|⌥/g,'alt')
+    .replace(/shift|⇧/g,'shift')
+    .replace(/\s+/g,'')
+    .split(/[+\-]/)
+    .filter(Boolean)
+    .map(p => p === ' ' ? 'space' : p);
+  parts.sort((a,b) => {
+    const ai = order.indexOf(a), bi = order.indexOf(b);
+    if (ai !== -1 && bi !== -1) return ai - bi;
+    if (ai !== -1) return -1;
+    if (bi !== -1) return 1;
+    return 0;
+  });
+  return parts.join('+');
+}
+
+function comboFromEvent(e) {
+  const parts = [];
+  if (e.ctrlKey)  parts.push('ctrl');
+  if (e.metaKey)  parts.push('cmd');
+  if (e.altKey)   parts.push('alt');
+  if (e.shiftKey) parts.push('shift');
+  const keyMap = {
+    'arrowup':'arrowup','arrowdown':'arrowdown',
+    'arrowleft':'arrowleft','arrowright':'arrowright',
+    'escape':'escape','tab':'tab','enter':'enter',
+    ' ':'space','backspace':'backspace',
+    'f1':'f1','f2':'f2','f3':'f3','f4':'f4','f5':'f5',
+    'f6':'f6','f7':'f7','f8':'f8','f9':'f9','f10':'f10',
+    'f11':'f11','f12':'f12',
+  };
+  const k = e.key.toLowerCase();
+  parts.push(keyMap[k] || k);
+  return parts.join('+');
+}
+
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+// ─── Screens ─────────────────────────────────────────────────────────────────
+const screens = ['home','game','results'].reduce((o,n) => (o[n]=document.getElementById('s-'+n), o), {});
+function show(name) {
+  Object.values(screens).forEach(s => s.hidden = true);
+  screens[name].hidden = false;
+  if (name === 'game') document.getElementById('capture').focus();
+}
+
+// ─── Home ────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.cat-card').forEach(c => {
+  c.addEventListener('click', () => {
+    const cat = c.dataset.cat;
+    if (st.cats.has(cat)) {
+      if (st.cats.size > 1) { st.cats.delete(cat); c.classList.remove('selected'); }
+    } else {
+      st.cats.add(cat); c.classList.add('selected');
+    }
+  });
+});
+
+function refreshBest() {
+  const b = localStorage.getItem('dojo-best');
+  document.getElementById('best-display').textContent = b ? `Personal best: ${b} pts` : '';
+}
+refreshBest();
+
+document.getElementById('start-btn').addEventListener('click', startGame);
+document.getElementById('again-btn').addEventListener('click', startGame);
+document.getElementById('home-btn').addEventListener('click', () => show('home'));
+
+// ─── Game ────────────────────────────────────────────────────────────────────
+function startGame() {
+  const pool = DB.filter(s => st.cats.has(s.cat));
+  if (!pool.length) return;
+  st.roundSize = +document.getElementById('round-size').value;
+  st.queue = shuffle(pool).slice(0, Math.min(st.roundSize, pool.length));
+  st.idx = 0; st.score = 0; st.streak = 0; st.maxStreak = 0;
+  st.correct = 0; st.results = [];
+  document.getElementById('q-tot').textContent = st.queue.length;
+  show('game');
+  next();
+}
+
+function next() {
+  if (st.idx >= st.queue.length) { showResults(); return; }
+
+  const q = st.queue[st.idx];
+  st.hintUsed = false; st.answered = false; st.waiting = false;
+
+  document.getElementById('q-cur').textContent = st.idx + 1;
+  document.getElementById('cat-label').textContent = q.lbl;
+  document.getElementById('action-text').innerHTML = q.action;
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('card').className = 'card';
+  document.getElementById('prog').style.width = (st.idx / st.queue.length * 100) + '%';
+  document.getElementById('hint-btn').disabled = false;
+  document.getElementById('skip-btn').disabled = false;
+  document.getElementById('keys-label').style.display = 'none';
+
+  const sb = document.getElementById('streak-badge');
+  if (st.streak >= 3) { sb.style.display = ''; sb.textContent = `x${st.streak} streak`; }
+  else sb.style.display = 'none';
+
+  const dirLabel = document.getElementById('direction-label');
+  if (q.textMode) {
+    dirLabel.textContent = 'type the shortcut for: (e.g. cmd+shift+p)';
+    renderTextInput();
+  } else {
+    dirLabel.textContent = 'press the shortcut for:';
+    renderKeys(q.keys, 'dim');
+    document.getElementById('capture').value = '';
+    document.getElementById('capture').focus();
+  }
+
+}
+
+function renderKeys(keys, state) {
+  document.getElementById('keys').innerHTML =
+    keys.map(k => `<span class="key ${state}">${k}</span>`).join('');
+}
+
+function renderTextInput() {
+  document.getElementById('keys').innerHTML =
+    `<div class="text-input-wrap">
+      <input id="txt" type="text" placeholder="e.g. cmd+w" autocomplete="off" spellcheck="false">
+      <button onclick="checkText()">Go</button>
+    </div>`;
+  const inp = document.getElementById('txt');
+  inp.focus();
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); checkText(); } });
+}
+
+function checkText() {
+  if (st.answered) return;
+  const inp = document.getElementById('txt');
+  if (!inp || !inp.value.trim()) return;
+  const raw = inp.value.trim();
+  const got = norm(raw);
+  const exp = norm(st.queue[st.idx].c);
+  if (got === exp) onCorrect(); else onWrong(`"${raw}"`);
+}
+
+// ─── Keyboard capture ────────────────────────────────────────────────────────
+const cap = document.getElementById('capture');
+cap.addEventListener('keydown', e => {
+  if (screens.game.hidden || st.answered || st.waiting) return;
+  if (st.queue[st.idx]?.textMode) return;
+  if (['Meta','Control','Alt','Shift'].includes(e.key)) return;
+  e.preventDefault(); e.stopPropagation();
+  const got = norm(comboFromEvent(e));
+  const exp = norm(st.queue[st.idx].c);
+  if (got === exp) onCorrect(); else onWrong(comboFromEvent(e).replace(/\+/g,' + ').toUpperCase());
+});
+
+// Re-focus capture when clicking anywhere in the game screen
+document.addEventListener('click', () => {
+  if (!screens.game.hidden) cap.focus();
+});
+
+// ─── Answer handlers ─────────────────────────────────────────────────────────
+function onCorrect() {
+  st.answered = true; st.correct++;
+  const mult = st.hintUsed ? 1 : Math.min(1 + st.streak * 0.5, 4);
+  const pts = Math.round(100 * mult);
+  st.score += pts;
+  if (!st.hintUsed) { st.streak++; st.maxStreak = Math.max(st.maxStreak, st.streak); }
+  st.results.push({ ...st.queue[st.idx], result:'correct' });
+
+  document.getElementById('card').classList.add('correct');
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback ok';
+  fb.textContent = st.streak > 1 && !st.hintUsed
+    ? `+${pts} pts   (${st.streak}x streak!)`
+    : `+${pts} pts   correct!`;
+  renderKeys(st.queue[st.idx].keys, 'good');
+  document.getElementById('score-disp').textContent = st.score;
+
+  st.waiting = true;
+  setTimeout(() => { st.idx++; next(); }, 850);
+}
+
+function onWrong(pressedLabel) {
+  st.answered = true; st.streak = 0;
+  st.results.push({ ...st.queue[st.idx], result:'wrong' });
+
+  document.getElementById('card').classList.add('wrong');
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback err';
+  fb.textContent = pressedLabel ? `You pressed: ${pressedLabel}` : 'Not quite.';
+
+  const lbl = document.getElementById('keys-label');
+  lbl.style.display = '';
+  lbl.textContent = 'Correct answer:';
+  renderKeys(st.queue[st.idx].keys, 'good');
+
+  st.waiting = true;
+  setTimeout(() => { st.idx++; next(); }, 2200);
+}
+
+document.getElementById('hint-btn').addEventListener('click', () => {
+  if (st.answered || st.hintUsed) return;
+  st.hintUsed = true; st.streak = 0;
+  document.getElementById('hint-btn').disabled = true;
+  document.getElementById('streak-badge').style.display = 'none';
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback'; fb.textContent = 'Hint — now press it:';
+  renderKeys(st.queue[st.idx].keys, 'good');
+});
+
+document.getElementById('skip-btn').addEventListener('click', () => {
+  if (st.answered) return;
+  st.streak = 0;
+  st.results.push({ ...st.queue[st.idx], result:'skip' });
+  document.getElementById('feedback').className = 'feedback err';
+  document.getElementById('feedback').textContent = 'Skipped.';
+  const lbl = document.getElementById('keys-label');
+  lbl.style.display = ''; lbl.textContent = 'Correct answer:';
+  renderKeys(st.queue[st.idx].keys, 'good');
+  st.answered = true; st.waiting = true;
+  setTimeout(() => { st.idx++; next(); }, 1500);
+});
+
+// ─── Results ─────────────────────────────────────────────────────────────────
+function showResults() {
+  const total = st.results.length;
+  const correct = st.results.filter(r => r.result === 'correct').length;
+  const pct = Math.round(correct / total * 100);
+
+  document.getElementById('final-score').textContent = st.score + ' pts';
+
+  let comment = pct === 100 ? 'Perfect round. Flawless.' :
+    pct >= 80 ? 'Solid work. Keep pushing.' :
+    pct >= 60 ? 'Getting there — keep training.' :
+    pct >= 40 ? 'Room to grow. Practice makes perfect.' :
+    'Every expert started here.';
+
+  const best = parseInt(localStorage.getItem('dojo-best') || '0');
+  if (st.score > best) {
+    localStorage.setItem('dojo-best', st.score);
+    comment += ' New personal best!';
+  }
+  document.getElementById('comment').textContent = comment;
+
+  const cats = {};
+  st.results.forEach(r => {
+    if (!cats[r.lbl]) cats[r.lbl] = { c:0, t:0 };
+    cats[r.lbl].t++;
+    if (r.result === 'correct') cats[r.lbl].c++;
+  });
+
+  document.getElementById('breakdown').innerHTML = `
+    <div class="row"><span class="label">Accuracy</span><span class="val">${pct}%  (${correct}/${total})</span></div>
+    <div class="row"><span class="label">Best streak</span><span class="val">${st.maxStreak}</span></div>
+    ${Object.entries(cats).map(([lbl,d]) =>
+      `<div class="row"><span class="label">${lbl}</span><span class="val">${d.c}/${d.t}</span></div>`
+    ).join('')}
+  `;
+
+  document.getElementById('prog').style.width = '100%';
+  show('results');
+  refreshBest();
+}
+</script>
+</body>
+</html>
