@@ -32,12 +32,7 @@ body {
 h1 { font-size: 2rem; margin-bottom: 6px; }
 .subtitle { color: var(--muted); font-size: 0.88rem; margin-bottom: 28px; }
 
-.categories {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 20px;
-}
+.categories { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
 .cat-card {
   background: var(--surface);
   border: 2px solid var(--border);
@@ -48,166 +43,195 @@ h1 { font-size: 2rem; margin-bottom: 6px; }
 }
 .cat-card.selected { border-color: var(--accent); background: rgba(88,166,255,0.08); }
 .cat-card h3 { font-size: 0.9rem; margin-bottom: 3px; }
-.cat-card p { color: var(--muted); font-size: 0.78rem; }
+.cat-card p  { color: var(--muted); font-size: 0.78rem; }
 
 .options-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 18px;
-  font-size: 0.85rem;
-  color: var(--muted);
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 18px; font-size: 0.85rem; color: var(--muted);
 }
 .options-row select {
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 0.85rem;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); padding: 5px 10px;
+  border-radius: 6px; font-family: inherit; font-size: 0.85rem;
 }
 
 .btn {
-  background: var(--accent);
-  color: #0d1117;
-  border: none;
-  border-radius: 6px;
-  padding: 11px 24px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 700;
-  cursor: pointer;
-  width: 100%;
-  transition: opacity 0.15s;
+  background: var(--accent); color: #0d1117;
+  border: none; border-radius: 6px; padding: 11px 24px;
+  font-family: inherit; font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; width: 100%; transition: opacity 0.15s;
 }
 .btn:hover { opacity: 0.85; }
 .btn.ghost {
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--border);
-  font-weight: 400;
-  margin-top: 10px;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); font-weight: 400; margin-top: 10px;
 }
 .best { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 10px; }
 
 /* Game */
 .topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.82rem;
-  color: var(--muted);
-  margin-bottom: 10px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.82rem; color: var(--muted); margin-bottom: 10px;
 }
 .topbar strong { color: var(--text); }
 .streak-badge {
-  background: rgba(227,179,65,0.15);
-  color: var(--orange);
-  border: 1px solid rgba(227,179,65,0.3);
-  border-radius: 99px;
-  padding: 2px 10px;
-  font-weight: 700;
-  font-size: 0.82rem;
+  background: rgba(227,179,65,0.15); color: var(--orange);
+  border: 1px solid rgba(227,179,65,0.3); border-radius: 99px;
+  padding: 2px 10px; font-weight: 700; font-size: 0.82rem;
 }
 .progress-bar { height: 3px; background: var(--border); border-radius: 2px; margin-bottom: 28px; }
 .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.35s ease; }
 
 .card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 32px 28px;
-  margin-bottom: 14px;
-  min-height: 190px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  transition: border-color 0.2s;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px 28px 24px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; transition: border-color 0.2s;
 }
 .card.correct { border-color: var(--green); }
 .card.wrong   { border-color: var(--red); }
 
-.cat-label {
-  font-size: 0.7rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  margin-bottom: 10px;
-}
-.action-text {
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 22px;
-}
+.cat-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 10px; }
+.direction-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 6px; }
+.action-text { font-size: 1.2rem; font-weight: 600; line-height: 1.4; margin-bottom: 20px; }
 
-.keys {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-  justify-content: center;
-  min-height: 40px;
-  align-items: center;
-}
+.keys { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; min-height: 40px; align-items: center; }
 .key {
-  background: #21262d;
-  border: 1px solid #484f58;
-  border-bottom: 3px solid #484f58;
-  border-radius: 6px;
-  padding: 5px 11px;
-  font-size: 0.95rem;
-  min-width: 38px;
-  text-align: center;
-  color: var(--text);
+  background: #21262d; border: 1px solid #484f58; border-bottom: 3px solid #484f58;
+  border-radius: 6px; padding: 5px 11px; font-size: 0.95rem;
+  min-width: 38px; text-align: center; color: var(--text);
 }
-.key.dim    { color: var(--muted); border-style: dashed; background: transparent; border-bottom-style: dashed; }
-.key.good   { border-color: var(--green);  color: var(--green);  background: rgba(63,185,80,0.1);  border-bottom-color: var(--green); }
-.key.bad    { border-color: var(--red);    color: var(--red);    background: rgba(248,81,73,0.1);   border-bottom-color: var(--red); }
-.key-sep    { color: var(--muted); align-self: center; font-size: 0.85rem; }
+.key.dim  { color: var(--muted); border-style: dashed; background: transparent; border-bottom-style: dashed; }
+.key.good { border-color: var(--green); color: var(--green); background: rgba(63,185,80,0.1); border-bottom-color: var(--green); }
+.key.bad  { border-color: var(--red);   color: var(--red);   background: rgba(248,81,73,0.1);  border-bottom-color: var(--red); }
 
-.text-input-wrap {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
+.text-input-wrap { display: flex; gap: 8px; align-items: center; }
 .text-input-wrap input {
-  background: #21262d;
-  border: 1px dashed var(--border);
-  border-radius: 6px;
-  padding: 7px 13px;
-  color: var(--text);
-  font-family: inherit;
-  font-size: 0.9rem;
-  width: 200px;
-  text-align: center;
+  background: #21262d; border: 1px dashed var(--border); border-radius: 6px;
+  padding: 7px 13px; color: var(--text); font-family: inherit;
+  font-size: 0.9rem; width: 200px; text-align: center;
 }
 .text-input-wrap input:focus { outline: 1px solid var(--accent); }
 .text-input-wrap button {
-  background: var(--accent);
-  color: #0d1117;
-  border: none;
-  border-radius: 6px;
-  padding: 7px 14px;
-  font-family: inherit;
-  font-weight: 700;
-  cursor: pointer;
+  background: var(--accent); color: #0d1117; border: none;
+  border-radius: 6px; padding: 7px 14px; font-family: inherit; font-weight: 700; cursor: pointer;
 }
 
-.feedback {
-  font-size: 0.88rem;
-  min-height: 1.4rem;
-  text-align: center;
-  margin-bottom: 10px;
-}
+.feedback { font-size: 0.88rem; min-height: 1.4rem; text-align: center; margin-bottom: 8px; }
 .feedback.ok  { color: var(--green); }
 .feedback.err { color: var(--red); }
 
 .action-row { display: flex; gap: 10px; }
 .action-row .btn { font-size: 0.85rem; font-weight: 400; }
 .action-row .btn.ghost { margin-top: 0; }
+
+/* ── Demo ──────────────────────────────────────────────────────────────────── */
+#demo { margin-top: 10px; animation: fadeIn 0.3s ease; }
+
+.demo-box {
+  background: #010409;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.78rem;
+}
+.demo-label {
+  font-size: 0.65rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+/* Terminal demo */
+.demo-term {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 8px;
+  row-gap: 2px;
+  align-items: center;
+}
+.d-ps  { color: var(--green); white-space: nowrap; user-select: none; }
+.d-cmd { color: var(--muted); }
+.d-cmd.hi { color: var(--text); }
+.d-div {
+  grid-column: 1 / -1;
+  color: var(--accent);
+  font-size: 0.7rem;
+  padding: 3px 0;
+}
+
+/* Code demo */
+.demo-code { display: flex; flex-direction: column; gap: 2px; }
+.d-line     { color: var(--muted); white-space: pre; padding: 1px 0; }
+.d-line.hi  { color: var(--text); }
+.kw { color: #ff7b72; }
+.fn { color: #d2a8ff; }
+.st { color: #a5d6ff; }
+.cm { color: #6e7681; font-style: italic; }
+.sel { background: rgba(88,166,255,0.25); border-radius: 2px; }
+
+/* UI demo */
+.demo-ui { display: flex; flex-direction: column; gap: 6px; }
+.d-palette {
+  background: #1f2428; border: 1px solid #58a6ff44;
+  border-radius: 6px; padding: 8px 12px;
+  color: var(--muted); display: flex; align-items: center; gap: 8px;
+}
+.d-palette-input { color: var(--text); }
+.d-palette-results { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+.d-palette-row { padding: 3px 8px; border-radius: 4px; color: var(--muted); font-size: 0.75rem; }
+.d-palette-row.active { background: rgba(88,166,255,0.15); color: var(--text); }
+.d-tabbar { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 6px; }
+.d-tab { padding: 4px 12px; font-size: 0.75rem; color: var(--muted); border-right: 1px solid var(--border); }
+.d-tab.active { color: var(--text); border-bottom: 2px solid var(--accent); margin-bottom: -1px; }
+.d-tab.closed { text-decoration: line-through; opacity: 0.4; }
+.d-tab.new    { color: var(--accent); }
+.d-urlbar {
+  background: #21262d; border: 1px solid var(--border);
+  border-radius: 4px; padding: 4px 10px;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.75rem;
+}
+.d-urlbar.focused { border-color: var(--accent); }
+.d-url { color: var(--muted); }
+.d-url.selected { background: rgba(88,166,255,0.2); color: var(--text); border-radius: 2px; }
+.d-find {
+  background: #1f2428; border: 1px solid var(--border);
+  border-radius: 4px; padding: 5px 10px;
+  display: flex; gap: 8px; align-items: center; font-size: 0.75rem;
+  color: var(--muted);
+}
+.d-win {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; overflow: hidden;
+}
+.d-win-bar { background: #21262d; padding: 6px 10px; font-size: 0.75rem; color: var(--muted); display: flex; gap: 6px; align-items: center; }
+.d-dot { width: 10px; height: 10px; border-radius: 50%; }
+.d-win-body { padding: 10px; color: var(--muted); font-size: 0.75rem; }
+.d-spotlight {
+  background: rgba(30,30,30,0.9); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px; padding: 10px 14px;
+  display: flex; align-items: center; gap: 8px; color: var(--muted);
+}
+.d-appswitcher { display: flex; gap: 8px; padding: 10px; background: rgba(30,30,30,0.9); border-radius: 10px; justify-content: center; }
+.d-appicon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.d-appicon.active { outline: 2px solid white; }
+.d-terminal-panel {
+  background: #0d1117; border-top: 1px solid var(--border);
+  padding: 8px 12px; font-size: 0.75rem; color: var(--green);
+}
+.d-sidebar-on  { display: flex; gap: 0; }
+.d-sidebar-off { display: flex; gap: 0; }
+.d-sidebar-panel { width: 40px; background: #1f2428; border-right: 1px solid var(--border); padding: 8px 6px; }
+.d-editor { flex: 1; padding: 8px; font-size: 0.72rem; color: var(--muted); }
+
+/* Cursor blink */
+.cur {
+  display: inline-block; width: 7px; height: 13px;
+  background: var(--accent); vertical-align: text-bottom;
+  border-radius: 1px; animation: blink 1.2s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.d-div-small { font-size: 0.7rem; color: var(--muted); padding: 2px 0; }
 
 /* Results */
 .big-score { font-size: 3.5rem; font-weight: 700; color: var(--accent); text-align: center; margin: 12px 0; }
@@ -218,10 +242,7 @@ h1 { font-size: 2rem; margin-bottom: 6px; }
 .row .label { color: var(--muted); }
 .row .val   { font-weight: 600; }
 
-#capture {
-  position: fixed; opacity: 0; pointer-events: none;
-  top: 0; left: 0; width: 1px; height: 1px;
-}
+#capture { position: fixed; opacity: 0; pointer-events: none; top: 0; left: 0; width: 1px; height: 1px; }
 </style>
 </head>
 <body>
@@ -229,8 +250,7 @@ h1 { font-size: 2rem; margin-bottom: 6px; }
 <!-- HOME -->
 <div id="s-home" class="screen">
   <h1>Shortcut Dojo</h1>
-  <p class="subtitle">The game shows you an <strong>action</strong> — you press the actual keyboard shortcut for it. That's it.</p>
-
+  <p class="subtitle">The game shows you an <strong>action</strong> — you press the actual keyboard shortcut for it.</p>
   <p style="color:var(--muted);font-size:0.8rem;margin-bottom:10px;">Choose categories:</p>
   <div class="categories">
     <div class="cat-card selected" data-cat="terminal"><h3>Terminal</h3><p>Bash/Zsh navigation &amp; control</p></div>
@@ -238,7 +258,6 @@ h1 { font-size: 2rem; margin-bottom: 6px; }
     <div class="cat-card selected" data-cat="macos"><h3>macOS</h3><p>System &amp; window management</p></div>
     <div class="cat-card selected" data-cat="browser"><h3>Browser</h3><p>Chrome/Firefox navigation</p></div>
   </div>
-
   <div class="options-row">
     <span>Questions per round:</span>
     <select id="round-size">
@@ -248,7 +267,6 @@ h1 { font-size: 2rem; margin-bottom: 6px; }
       <option value="30">30</option>
     </select>
   </div>
-
   <button class="btn" id="start-btn">Start Training</button>
   <div class="best" id="best-display"></div>
 </div>
@@ -264,14 +282,15 @@ h1 { font-size: 2rem; margin-bottom: 6px; }
 
   <div class="card" id="card">
     <div class="cat-label" id="cat-label"></div>
-    <div style="font-size:0.75rem;color:var(--muted);margin-bottom:6px;" id="direction-label">press the shortcut for:</div>
+    <div class="direction-label" id="direction-label">press the shortcut for:</div>
     <div class="action-text" id="action-text">–</div>
     <div id="keys-label" style="font-size:0.72rem;color:var(--muted);margin-bottom:6px;display:none"></div>
     <div class="keys" id="keys"></div>
   </div>
 
-  <div class="feedback" id="feedback"></div>
+  <div id="demo" hidden></div>
 
+  <div class="feedback" id="feedback"></div>
   <div class="action-row">
     <button class="btn ghost" id="hint-btn">Show Hint (breaks streak)</button>
     <button class="btn ghost" id="skip-btn">Skip</button>
@@ -291,84 +310,246 @@ h1 { font-size: 2rem; margin-bottom: 6px; }
 <input id="capture" type="text" autocomplete="off" spellcheck="false">
 
 <script>
-// ─── Shortcut database ───────────────────────────────────────────────────────
-// canonical: modifiers sorted ctrl>cmd>alt>shift, then key
-// textMode: true for shortcuts the browser would intercept (cmd+w, cmd+t, cmd+q, cmd+n)
+// ── Demo helpers ──────────────────────────────────────────────────────────────
+const Q = '<span class="cur">▌</span>';
+
+function td(before, after) {
+  return `<div class="demo-box">
+    <div class="demo-label">what happens</div>
+    <div class="demo-term">
+      <span class="d-ps">~$</span><span class="d-cmd">${before}</span>
+      <span class="d-div">↓</span>
+      <span class="d-ps">~$</span><span class="d-cmd hi">${after}</span>
+    </div>
+  </div>`;
+}
+
+function cd(before, after) {
+  return `<div class="demo-box">
+    <div class="demo-label">what happens</div>
+    <div class="demo-code">
+      <span class="d-line">${before}</span>
+      <span class="d-div-small">↓</span>
+      <span class="d-line hi">${after}</span>
+    </div>
+  </div>`;
+}
+
+function cdm(lines_before, lines_after) { // multi-line code demo
+  return `<div class="demo-box">
+    <div class="demo-label">what happens</div>
+    <div class="demo-code">
+      ${lines_before.map(l => `<span class="d-line">${l}</span>`).join('')}
+      <span class="d-div-small">↓</span>
+      ${lines_after.map(l => `<span class="d-line hi">${l}</span>`).join('')}
+    </div>
+  </div>`;
+}
+
+function uid(inner) {
+  return `<div class="demo-box">
+    <div class="demo-label">what happens</div>
+    <div class="demo-ui">${inner}</div>
+  </div>`;
+}
+
+// ── Shortcut database ─────────────────────────────────────────────────────────
 const DB = [
   // Terminal
-  {cat:'terminal',lbl:'Terminal',action:'Go to beginning of line',          keys:['Ctrl','A'], c:'ctrl+a'},
-  {cat:'terminal',lbl:'Terminal',action:'Go to end of line',                keys:['Ctrl','E'], c:'ctrl+e'},
-  {cat:'terminal',lbl:'Terminal',action:'Clear the screen',                 keys:['Ctrl','L'], c:'ctrl+l'},
-  {cat:'terminal',lbl:'Terminal',action:'Cancel current command',           keys:['Ctrl','C'], c:'ctrl+c'},
-  {cat:'terminal',lbl:'Terminal',action:'Search command history',           keys:['Ctrl','R'], c:'ctrl+r'},
-  {cat:'terminal',lbl:'Terminal',action:'Delete to end of line',            keys:['Ctrl','K'], c:'ctrl+k'},
-  {cat:'terminal',lbl:'Terminal',action:'Delete to beginning of line',      keys:['Ctrl','U'], c:'ctrl+u'},
-  {cat:'terminal',lbl:'Terminal',action:'Delete word before cursor',        keys:['Ctrl','W'], c:'ctrl+w'},
-  {cat:'terminal',lbl:'Terminal',action:'Suspend current process',          keys:['Ctrl','Z'], c:'ctrl+z'},
-  {cat:'terminal',lbl:'Terminal',action:'Exit shell / send EOF',            keys:['Ctrl','D'], c:'ctrl+d'},
-  {cat:'terminal',lbl:'Terminal',action:'Move cursor forward one word',     keys:['Alt','F'],  c:'alt+f'},
-  {cat:'terminal',lbl:'Terminal',action:'Move cursor backward one word',    keys:['Alt','B'],  c:'alt+b'},
-  {cat:'terminal',lbl:'Terminal',action:'Previous command in history',      keys:['↑'],        c:'arrowup'},
-  {cat:'terminal',lbl:'Terminal',action:'Swap current and previous char',   keys:['Ctrl','T'], c:'ctrl+t'},
+  {cat:'terminal',lbl:'Terminal',action:'Go to beginning of line',          keys:['Ctrl','A'], c:'ctrl+a',
+    demo: td('git commit -m \'fix\''+Q, Q+'git commit -m \'fix\'')},
+  {cat:'terminal',lbl:'Terminal',action:'Go to end of line',                keys:['Ctrl','E'], c:'ctrl+e',
+    demo: td(Q+'git commit -m \'fix\'', 'git commit -m \'fix\''+Q)},
+  {cat:'terminal',lbl:'Terminal',action:'Clear the screen',                 keys:['Ctrl','L'], c:'ctrl+l',
+    demo: td('npm run dev'+Q, Q+'<span style="color:var(--muted);font-style:italic">(screen clears)</span>')},
+  {cat:'terminal',lbl:'Terminal',action:'Cancel current command',           keys:['Ctrl','C'], c:'ctrl+c',
+    demo: td('npm install'+Q, '^C')},
+  {cat:'terminal',lbl:'Terminal',action:'Search command history',           keys:['Ctrl','R'], c:'ctrl+r',
+    demo: uid(`<div class="d-palette"><span style="color:var(--muted)">(reverse-i-search)\`\`:</span> <span style="color:var(--text)">git_</span></div>`)},
+  {cat:'terminal',lbl:'Terminal',action:'Delete from cursor to end of line',keys:['Ctrl','K'], c:'ctrl+k',
+    demo: td('git commit'+Q+' -m \'fix\'', 'git commit'+Q)},
+  {cat:'terminal',lbl:'Terminal',action:'Delete from cursor to start of line',keys:['Ctrl','U'], c:'ctrl+u',
+    demo: td('git commit -m \'fix\''+Q, Q)},
+  {cat:'terminal',lbl:'Terminal',action:'Delete word before cursor',        keys:['Ctrl','W'], c:'ctrl+w',
+    demo: td('git commit -m'+Q, 'git commit'+Q)},
+  {cat:'terminal',lbl:'Terminal',action:'Suspend current process',          keys:['Ctrl','Z'], c:'ctrl+z',
+    demo: td('npm run dev'+Q, '[1]+  Stopped  npm run dev')},
+  {cat:'terminal',lbl:'Terminal',action:'Exit shell / send EOF',            keys:['Ctrl','D'], c:'ctrl+d',
+    demo: td(Q, '<span style="color:var(--muted);font-style:italic">logout</span>')},
+  {cat:'terminal',lbl:'Terminal',action:'Move cursor forward one word',     keys:['Alt','F'],  c:'alt+f',
+    demo: td(Q+'git commit -m \'fix\'', 'git'+Q+' commit -m \'fix\'')},
+  {cat:'terminal',lbl:'Terminal',action:'Move cursor backward one word',    keys:['Alt','B'],  c:'alt+b',
+    demo: td('git commit'+Q, 'git'+Q+' commit')},
+  {cat:'terminal',lbl:'Terminal',action:'Previous command in history',      keys:['↑'],        c:'arrowup',
+    demo: td(Q, 'git push origin main'+Q)},
+  {cat:'terminal',lbl:'Terminal',action:'Swap current and previous char',   keys:['Ctrl','T'], c:'ctrl+t',
+    demo: td('git pus'+Q+'h', 'git push'+Q)},
 
   // VS Code
-  {cat:'vscode',lbl:'VS Code',action:'Open Command Palette',               keys:['⌘','⇧','P'],   c:'cmd+shift+p'},
-  {cat:'vscode',lbl:'VS Code',action:'Quick Open — go to file',            keys:['⌘','P'],        c:'cmd+p'},
-  {cat:'vscode',lbl:'VS Code',action:'Toggle integrated terminal',         keys:['Ctrl','`'],     c:'ctrl+`'},
-  {cat:'vscode',lbl:'VS Code',action:'Toggle sidebar',                     keys:['⌘','B'],        c:'cmd+b'},
-  {cat:'vscode',lbl:'VS Code',action:'Toggle line comment',                keys:['⌘','/'],        c:'cmd+/'},
-  {cat:'vscode',lbl:'VS Code',action:'Delete entire line',                 keys:['⌘','⇧','K'],    c:'cmd+shift+k'},
-  {cat:'vscode',lbl:'VS Code',action:'Duplicate line down',                keys:['⌥','⇧','↓'],    c:'alt+shift+arrowdown'},
-  {cat:'vscode',lbl:'VS Code',action:'Move line up',                       keys:['⌥','↑'],        c:'alt+arrowup'},
-  {cat:'vscode',lbl:'VS Code',action:'Move line down',                     keys:['⌥','↓'],        c:'alt+arrowdown'},
-  {cat:'vscode',lbl:'VS Code',action:'Select next occurrence of selection',keys:['⌘','D'],        c:'cmd+d'},
-  {cat:'vscode',lbl:'VS Code',action:'Format document',                    keys:['⌥','⇧','F'],    c:'alt+shift+f'},
-  {cat:'vscode',lbl:'VS Code',action:'Go to definition',                   keys:['F12'],          c:'f12'},
-  {cat:'vscode',lbl:'VS Code',action:'Rename symbol',                      keys:['F2'],           c:'f2'},
-  {cat:'vscode',lbl:'VS Code',action:'Find in file',                       keys:['⌘','F'],        c:'cmd+f'},
-  {cat:'vscode',lbl:'VS Code',action:'Search across all files',            keys:['⌘','⇧','F'],    c:'cmd+shift+f'},
-  {cat:'vscode',lbl:'VS Code',action:'Split editor right',                 keys:['⌘','\\'],       c:'cmd+\\'},
-  {cat:'vscode',lbl:'VS Code',action:'Close current editor tab',           keys:['⌘','W'],        c:'cmd+w', textMode:true},
-  {cat:'vscode',lbl:'VS Code',action:'Toggle Problems panel',              keys:['⌘','⇧','M'],    c:'cmd+shift+m'},
-  {cat:'vscode',lbl:'VS Code',action:'Go to line number',                  keys:['Ctrl','G'],     c:'ctrl+g'},
-  {cat:'vscode',lbl:'VS Code',action:'Open keyboard shortcuts',            keys:['⌘','K','⌘','S'],c:'cmd+k', textMode:true},
+  {cat:'vscode',lbl:'VS Code',action:'Open Command Palette',               keys:['⌘','⇧','P'], c:'cmd+shift+p',
+    demo: uid(`<div class="d-palette">
+      <div>
+        <div class="d-palette-input">&gt; format document</div>
+        <div class="d-palette-results">
+          <div class="d-palette-row active">Format Document</div>
+          <div class="d-palette-row">Format Selection</div>
+        </div>
+      </div>
+    </div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Quick Open — go to file',            keys:['⌘','P'], c:'cmd+p',
+    demo: uid(`<div class="d-palette">
+      <div>
+        <div class="d-palette-input">user-service.ts</div>
+        <div class="d-palette-results">
+          <div class="d-palette-row active">src/services/user-service.ts</div>
+          <div class="d-palette-row">src/types/user.ts</div>
+        </div>
+      </div>
+    </div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Toggle integrated terminal',         keys:['Ctrl','`'], c:'ctrl+`',
+    demo: uid(`<div class="d-terminal-panel">~ $ <span class="cur">▌</span></div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Toggle sidebar',                     keys:['⌘','B'], c:'cmd+b',
+    demo: uid(`
+      <div class="d-div-small" style="margin-bottom:4px">before</div>
+      <div class="d-sidebar-on" style="border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:6px">
+        <div class="d-sidebar-panel"></div>
+        <div class="d-editor">const x = 1;</div>
+      </div>
+      <div class="d-div-small" style="margin-bottom:4px">after</div>
+      <div style="border:1px solid var(--border);border-radius:4px;overflow:hidden">
+        <div class="d-editor">const x = 1;</div>
+      </div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Toggle line comment',                keys:['⌘','/'], c:'cmd+/',
+    demo: cd('<span class="kw">const</span> x = <span class="fn">useRef</span>(<span class="kw">null</span>);',
+             '<span class="cm">// const x = useRef(null);</span>')},
+  {cat:'vscode',lbl:'VS Code',action:'Delete entire line',                 keys:['⌘','⇧','K'], c:'cmd+shift+k',
+    demo: cdm(
+      ['<span class="kw">const</span> a = 1;', '<span style="background:rgba(248,81,73,0.15);border-radius:2px"><span class="kw">const</span> b = 2; <span class="cm">← deleted</span></span>', '<span class="kw">const</span> c = 3;'],
+      ['<span class="kw">const</span> a = 1;', '<span class="kw">const</span> c = 3;'])},
+  {cat:'vscode',lbl:'VS Code',action:'Duplicate line down',                keys:['⌥','⇧','↓'], c:'alt+shift+arrowdown',
+    demo: cdm(
+      ['<span class="kw">const</span> x = 1;'],
+      ['<span class="kw">const</span> x = 1;', '<span class="kw">const</span> x = 1;'])},
+  {cat:'vscode',lbl:'VS Code',action:'Move line up',                       keys:['⌥','↑'], c:'alt+arrowup',
+    demo: cdm(
+      ['<span class="cm">// line 1</span>', '<span style="background:rgba(88,166,255,0.12);border-radius:2px"><span class="kw">const</span> x = 2; <span class="cm">← moves up</span></span>'],
+      ['<span class="kw">const</span> x = 2;', '<span class="cm">// line 1</span>'])},
+  {cat:'vscode',lbl:'VS Code',action:'Move line down',                     keys:['⌥','↓'], c:'alt+arrowdown',
+    demo: cdm(
+      ['<span style="background:rgba(88,166,255,0.12);border-radius:2px"><span class="cm">// line 1</span> <span class="cm">← moves down</span></span>', '<span class="kw">const</span> x = 2;'],
+      ['<span class="kw">const</span> x = 2;', '<span class="cm">// line 1</span>'])},
+  {cat:'vscode',lbl:'VS Code',action:'Select next occurrence of selection', keys:['⌘','D'], c:'cmd+d',
+    demo: cdm(
+      ['<span class="kw">const</span> <span class="sel">foo</span> = 1;', '<span class="kw">return</span> foo + 1;'],
+      ['<span class="kw">const</span> <span class="sel">foo</span> = 1;', '<span class="kw">return</span> <span class="sel">foo</span> + 1;'])},
+  {cat:'vscode',lbl:'VS Code',action:'Format document',                    keys:['⌥','⇧','F'], c:'alt+shift+f',
+    demo: cdm(
+      ['<span class="kw">function</span> <span class="fn">go</span>(){<span class="kw">return</span> <span class="fn">x</span>(<span class="st">\'a\'</span>,<span class="st">\'b\'</span>)}'],
+      ['<span class="kw">function</span> <span class="fn">go</span>() {', '  <span class="kw">return</span> <span class="fn">x</span>(<span class="st">\'a\'</span>, <span class="st">\'b\'</span>);', '}'])},
+  {cat:'vscode',lbl:'VS Code',action:'Go to definition',                   keys:['F12'], c:'f12',
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">jumps to where <span style="color:var(--fn,#d2a8ff)">myFunction</span> is defined — even across files</div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Rename symbol',                      keys:['F2'], c:'f2',
+    demo: cdm(
+      ['<span class="kw">const</span> <span class="sel">oldName</span> = 1;', '<span class="fn">doThing</span>(<span class="sel">oldName</span>);'],
+      ['<span class="kw">const</span> <span style="color:var(--green)">newName</span> = 1;', '<span class="fn">doThing</span>(<span style="color:var(--green)">newName</span>);'])},
+  {cat:'vscode',lbl:'VS Code',action:'Find in file',                       keys:['⌘','F'], c:'cmd+f',
+    demo: uid(`<div class="d-find"><span>Find:</span> <span style="color:var(--text)">useEffect_</span> <span style="color:var(--muted);margin-left:auto">3 results</span></div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Search across all files',            keys:['⌘','⇧','F'], c:'cmd+shift+f',
+    demo: uid(`<div class="d-palette"><div><div class="d-palette-input">useEffect</div><div class="d-palette-results"><div class="d-palette-row active">src/App.tsx  line 12</div><div class="d-palette-row">src/hooks/useFetch.ts  line 4</div></div></div></div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Split editor right',                 keys:['⌘','\\'], c:'cmd+\\',
+    demo: uid(`<div style="display:flex;gap:4px;font-size:0.72rem">
+      <div style="flex:1;border:1px solid var(--border);border-radius:4px;padding:6px;color:var(--muted)">App.tsx</div>
+      <div style="flex:1;border:1px solid var(--accent);border-radius:4px;padding:6px;color:var(--muted)">App.tsx</div>
+    </div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Close current editor tab',           keys:['⌘','W'], c:'cmd+w', textMode:true,
+    demo: uid(`<div class="d-tabbar"><div class="d-tab">index.ts</div><div class="d-tab closed">App.tsx ✕</div><div class="d-tab">utils.ts</div></div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Toggle Problems panel',              keys:['⌘','⇧','M'], c:'cmd+shift+m',
+    demo: uid(`<div style="background:#161b22;border:1px solid var(--border);border-radius:4px;padding:8px;font-size:0.75rem">
+      <div style="color:var(--muted);margin-bottom:4px">PROBLEMS</div>
+      <div style="color:var(--red)">✗ Cannot find name 'x'  App.tsx:12</div>
+      <div style="color:var(--orange)">⚠ 'y' is defined but never used  App.tsx:8</div>
+    </div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Go to line number',                  keys:['Ctrl','G'], c:'ctrl+g',
+    demo: uid(`<div class="d-palette"><span style="color:var(--muted)">Go to line: </span><span style="color:var(--text)">42_</span></div>`)},
+  {cat:'vscode',lbl:'VS Code',action:'Open keyboard shortcuts',            keys:['⌘','K','⌘','S'], c:'cmd+k', textMode:true,
+    demo: uid(`<div class="d-palette"><div><div class="d-palette-input">keybindings</div><div class="d-palette-results"><div class="d-palette-row active">⌘K ⌘S — Open Keyboard Shortcuts</div></div></div></div>`)},
 
-  // macOS — all textMode because OS intercepts these before the browser can
-  {cat:'macos',lbl:'macOS',action:'Open Spotlight',                        keys:['⌘','Space'],    c:'cmd+space',       textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Switch to next app',                    keys:['⌘','Tab'],      c:'cmd+tab',         textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Switch windows of same app',            keys:['⌘','`'],        c:'cmd+`',           textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Screenshot — save selection to file',   keys:['⌘','⇧','4'],    c:'cmd+shift+4',     textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Screenshot — selection to clipboard',   keys:['⌘','⌃','⇧','4'],c:'cmd+ctrl+shift+4',textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Hide current app',                      keys:['⌘','H'],        c:'cmd+h',           textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Minimize window to Dock',               keys:['⌘','M'],        c:'cmd+m',           textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Mission Control — show all windows',    keys:['⌃','↑'],        c:'ctrl+arrowup',    textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Force Quit dialog',                     keys:['⌘','⌥','Esc'],  c:'cmd+alt+escape',  textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Emoji &amp; Symbols picker',            keys:['⌘','⌃','Space'],c:'cmd+ctrl+space',  textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Lock screen',                           keys:['⌘','⌃','Q'],    c:'cmd+ctrl+q',      textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Open app Preferences / Settings',       keys:['⌘',','],        c:'cmd+,',           textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Quit application',                      keys:['⌘','Q'],        c:'cmd+q',           textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Undo',                                  keys:['⌘','Z'],        c:'cmd+z',           textMode:true},
-  {cat:'macos',lbl:'macOS',action:'Redo',                                  keys:['⌘','⇧','Z'],    c:'cmd+shift+z',     textMode:true},
+  // macOS — all textMode
+  {cat:'macos',lbl:'macOS',action:'Open Spotlight',                        keys:['⌘','Space'], c:'cmd+space', textMode:true,
+    demo: uid(`<div class="d-spotlight">🔍 <span style="color:var(--text)">Spotlight Search_</span></div>`)},
+  {cat:'macos',lbl:'macOS',action:'Switch to next app',                    keys:['⌘','Tab'], c:'cmd+tab', textMode:true,
+    demo: uid(`<div class="d-appswitcher">
+      <div class="d-appicon">🌐</div>
+      <div class="d-appicon active">💻</div>
+      <div class="d-appicon">📧</div>
+      <div class="d-appicon">🎵</div>
+    </div>`)},
+  {cat:'macos',lbl:'macOS',action:'Switch windows of same app',            keys:['⌘','`'], c:'cmd+`', textMode:true,
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">cycles through open <span style="color:var(--text)">VS Code windows</span> (or whichever app is active)</div>`)},
+  {cat:'macos',lbl:'macOS',action:'Screenshot — save selection to file',   keys:['⌘','⇧','4'], c:'cmd+shift+4', textMode:true,
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">cursor becomes a <span style="color:var(--text)">crosshair</span> — drag to select area → saved to Desktop</div>`)},
+  {cat:'macos',lbl:'macOS',action:'Screenshot — selection to clipboard',   keys:['⌘','⌃','⇧','4'], c:'cmd+ctrl+shift+4', textMode:true,
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">same crosshair, but image goes to <span style="color:var(--text)">clipboard</span> instead of a file</div>`)},
+  {cat:'macos',lbl:'macOS',action:'Hide current app',                      keys:['⌘','H'], c:'cmd+h', textMode:true,
+    demo: uid(`<div class="d-win"><div class="d-win-bar"><div class="d-dot" style="background:#ff5f57"></div><div class="d-dot" style="background:#febc2e"></div><div class="d-dot" style="background:#28c840"></div><span style="margin-left:4px">VS Code</span></div><div class="d-win-body">window disappears (still running, not closed)</div></div>`)},
+  {cat:'macos',lbl:'macOS',action:'Minimize window to Dock',               keys:['⌘','M'], c:'cmd+m', textMode:true,
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">window shrinks and slides into the <span style="color:var(--text)">Dock</span></div>`)},
+  {cat:'macos',lbl:'macOS',action:'Mission Control — show all windows',    keys:['⌃','↑'], c:'ctrl+arrowup', textMode:true,
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">all open windows spread out so you can <span style="color:var(--text)">see and switch</span> between them</div>`)},
+  {cat:'macos',lbl:'macOS',action:'Force Quit dialog',                     keys:['⌘','⌥','Esc'], c:'cmd+alt+escape', textMode:true,
+    demo: uid(`<div class="d-palette"><div style="color:var(--muted);margin-bottom:6px">Force Quit Applications</div><div class="d-palette-results"><div class="d-palette-row active">Safari <span style="color:var(--red)">(not responding)</span></div><div class="d-palette-row">VS Code</div></div></div>`)},
+  {cat:'macos',lbl:'macOS',action:'Emoji &amp; Symbols picker',            keys:['⌘','⌃','Space'], c:'cmd+ctrl+space', textMode:true,
+    demo: uid(`<div class="d-spotlight">😀 🎉 ✅ 🔥 ⌘ ← <span style="color:var(--text)">floating picker</span></div>`)},
+  {cat:'macos',lbl:'macOS',action:'Lock screen',                           keys:['⌘','⌃','Q'], c:'cmd+ctrl+q', textMode:true,
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">screen goes black immediately → <span style="color:var(--text)">login screen</span></div>`)},
+  {cat:'macos',lbl:'macOS',action:'Open app Preferences / Settings',       keys:['⌘',','], c:'cmd+,', textMode:true,
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">opens <span style="color:var(--text)">Settings</span> for the current app — works in almost every macOS app</div>`)},
+  {cat:'macos',lbl:'macOS',action:'Quit application',                      keys:['⌘','Q'], c:'cmd+q', textMode:true,
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">completely <span style="color:var(--text)">closes the app</span> (unlike ⌘W which just closes the window)</div>`)},
+  {cat:'macos',lbl:'macOS',action:'Undo',                                  keys:['⌘','Z'], c:'cmd+z', textMode:true,
+    demo: cd('Hello Worldd', 'Hello World')},
+  {cat:'macos',lbl:'macOS',action:'Redo',                                  keys:['⌘','⇧','Z'], c:'cmd+shift+z', textMode:true,
+    demo: cd('Hello World', 'Hello Worldd')},
 
   // Browser
-  {cat:'browser',lbl:'Browser',action:'Focus the address bar',             keys:['⌘','L'],        c:'cmd+l'},
-  {cat:'browser',lbl:'Browser',action:'Open a new tab',                    keys:['⌘','T'],        c:'cmd+t', textMode:true},
-  {cat:'browser',lbl:'Browser',action:'Reopen last closed tab',            keys:['⌘','⇧','T'],    c:'cmd+shift+t'},
-  {cat:'browser',lbl:'Browser',action:'Close current tab',                 keys:['⌘','W'],        c:'cmd+w', textMode:true},
-  {cat:'browser',lbl:'Browser',action:'Reload page',                       keys:['⌘','R'],        c:'cmd+r'},
-  {cat:'browser',lbl:'Browser',action:'Hard reload (bypass cache)',        keys:['⌘','⇧','R'],    c:'cmd+shift+r'},
-  {cat:'browser',lbl:'Browser',action:'Open DevTools',                     keys:['⌘','⌥','I'],    c:'cmd+alt+i'},
-  {cat:'browser',lbl:'Browser',action:'Find text on page',                 keys:['⌘','F'],        c:'cmd+f'},
-  {cat:'browser',lbl:'Browser',action:'Go to next tab',                    keys:['⌘','⌥','→'],    c:'cmd+alt+arrowright'},
-  {cat:'browser',lbl:'Browser',action:'Go to previous tab',               keys:['⌘','⌥','←'],    c:'cmd+alt+arrowleft'},
-  {cat:'browser',lbl:'Browser',action:'Navigate back',                     keys:['⌘','['],        c:'cmd+['},
-  {cat:'browser',lbl:'Browser',action:'Navigate forward',                  keys:['⌘',']'],        c:'cmd+]'},
-  {cat:'browser',lbl:'Browser',action:'Bookmark current page',             keys:['⌘','D'],        c:'cmd+d'},
-  {cat:'browser',lbl:'Browser',action:'Open new incognito window',         keys:['⌘','⇧','N'],    c:'cmd+shift+n'},
-  {cat:'browser',lbl:'Browser',action:'Open new window',                   keys:['⌘','N'],        c:'cmd+n', textMode:true},
+  {cat:'browser',lbl:'Browser',action:'Focus the address bar',             keys:['⌘','L'], c:'cmd+l',
+    demo: uid(`
+      <div class="d-urlbar" style="margin-bottom:4px"><span style="color:var(--muted)">🔒</span><span class="d-url">github.com/Aphanite</span></div>
+      <div class="d-urlbar focused"><span style="color:var(--muted)">🔒</span><span class="d-url selected">github.com/Aphanite</span></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Open a new tab',                    keys:['⌘','T'], c:'cmd+t', textMode:true,
+    demo: uid(`<div class="d-tabbar"><div class="d-tab active">GitHub</div><div class="d-tab new">New Tab +</div></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Reopen last closed tab',            keys:['⌘','⇧','T'], c:'cmd+shift+t',
+    demo: uid(`<div class="d-tabbar"><div class="d-tab">GitHub</div><div class="d-tab active new">stackoverflow.com ↩</div></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Close current tab',                 keys:['⌘','W'], c:'cmd+w', textMode:true,
+    demo: uid(`<div class="d-tabbar"><div class="d-tab active">GitHub</div><div class="d-tab closed">Reddit ✕</div></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Reload page',                       keys:['⌘','R'], c:'cmd+r',
+    demo: uid(`<div class="d-urlbar"><span style="color:var(--accent)">↻</span><span class="d-url">github.com</span><span style="color:var(--muted);margin-left:auto;font-size:0.7rem">reloading…</span></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Hard reload (bypass cache)',        keys:['⌘','⇧','R'], c:'cmd+shift+r',
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">reloads and <span style="color:var(--text)">ignores cached files</span> — useful when CSS/JS isn't updating</div>`)},
+  {cat:'browser',lbl:'Browser',action:'Open DevTools',                     keys:['⌘','⌥','I'], c:'cmd+alt+i',
+    demo: uid(`<div style="border:1px solid var(--border);border-radius:4px;overflow:hidden;font-size:0.72rem">
+      <div style="padding:6px 10px;color:var(--muted);border-bottom:1px solid var(--border)">page content</div>
+      <div style="background:#0d1117;padding:6px 10px;color:var(--green)">Elements  Console  Sources  Network</div>
+    </div>`)},
+  {cat:'browser',lbl:'Browser',action:'Find text on page',                 keys:['⌘','F'], c:'cmd+f',
+    demo: uid(`<div class="d-find">🔍 <span style="color:var(--text)">shortcut_</span> <span style="color:var(--muted);margin-left:auto">2 of 5</span></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Go to next tab',                    keys:['⌘','⌥','→'], c:'cmd+alt+arrowright',
+    demo: uid(`<div class="d-tabbar"><div class="d-tab">GitHub</div><div class="d-tab active" style="border-bottom:2px solid var(--accent)">Reddit →</div><div class="d-tab">HN</div></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Go to previous tab',                keys:['⌘','⌥','←'], c:'cmd+alt+arrowleft',
+    demo: uid(`<div class="d-tabbar"><div class="d-tab active" style="border-bottom:2px solid var(--accent)">← GitHub</div><div class="d-tab">Reddit</div><div class="d-tab">HN</div></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Navigate back',                     keys:['⌘','['], c:'cmd+[',
+    demo: uid(`<div class="d-urlbar"><span style="color:var(--accent)">←</span><span class="d-url">github.com <span style="color:var(--muted)">← was: github.com/issues</span></span></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Navigate forward',                  keys:['⌘',']'], c:'cmd+]',
+    demo: uid(`<div class="d-urlbar"><span style="color:var(--accent)">→</span><span class="d-url">github.com/issues <span style="color:var(--muted)">← was: github.com</span></span></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Bookmark current page',             keys:['⌘','D'], c:'cmd+d',
+    demo: uid(`<div class="d-urlbar"><span style="color:var(--muted)">🔒</span><span class="d-url">github.com</span><span style="margin-left:auto">⭐</span></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Open new incognito window',         keys:['⌘','⇧','N'], c:'cmd+shift+n',
+    demo: uid(`<div class="d-win"><div class="d-win-bar" style="background:#1a1a2e"><div class="d-dot" style="background:#ff5f57"></div><div class="d-dot" style="background:#febc2e"></div><div class="d-dot" style="background:#28c840"></div><span style="margin-left:4px;color:#a78bfa">🕵 Incognito</span></div></div>`)},
+  {cat:'browser',lbl:'Browser',action:'Open new window',                   keys:['⌘','N'], c:'cmd+n', textMode:true,
+    demo: uid(`<div style="font-size:0.75rem;color:var(--muted)">opens a fresh <span style="color:var(--text)">browser window</span></div>`)},
 ];
 
-// ─── State ───────────────────────────────────────────────────────────────────
+// ── State ─────────────────────────────────────────────────────────────────────
 const st = {
   cats: new Set(['terminal','vscode','macos','browser']),
   queue: [], idx: 0, roundSize: 15,
@@ -377,7 +558,7 @@ const st = {
   results: [],
 };
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────────
 function norm(s) {
   const order = ['ctrl','cmd','alt','shift'];
   const parts = s.toLowerCase()
@@ -406,13 +587,10 @@ function comboFromEvent(e) {
   if (e.altKey)   parts.push('alt');
   if (e.shiftKey) parts.push('shift');
   const keyMap = {
-    'arrowup':'arrowup','arrowdown':'arrowdown',
-    'arrowleft':'arrowleft','arrowright':'arrowright',
-    'escape':'escape','tab':'tab','enter':'enter',
-    ' ':'space','backspace':'backspace',
+    'arrowup':'arrowup','arrowdown':'arrowdown','arrowleft':'arrowleft','arrowright':'arrowright',
+    'escape':'escape','tab':'tab','enter':'enter',' ':'space','backspace':'backspace',
     'f1':'f1','f2':'f2','f3':'f3','f4':'f4','f5':'f5',
-    'f6':'f6','f7':'f7','f8':'f8','f9':'f9','f10':'f10',
-    'f11':'f11','f12':'f12',
+    'f6':'f6','f7':'f7','f8':'f8','f9':'f9','f10':'f10','f11':'f11','f12':'f12',
   };
   const k = e.key.toLowerCase();
   parts.push(keyMap[k] || k);
@@ -421,7 +599,7 @@ function comboFromEvent(e) {
 
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 
-// ─── Screens ─────────────────────────────────────────────────────────────────
+// ── Screens ───────────────────────────────────────────────────────────────────
 const screens = ['home','game','results'].reduce((o,n) => (o[n]=document.getElementById('s-'+n), o), {});
 function show(name) {
   Object.values(screens).forEach(s => s.hidden = true);
@@ -429,7 +607,7 @@ function show(name) {
   if (name === 'game') document.getElementById('capture').focus();
 }
 
-// ─── Home ────────────────────────────────────────────────────────────────────
+// ── Home ──────────────────────────────────────────────────────────────────────
 document.querySelectorAll('.cat-card').forEach(c => {
   c.addEventListener('click', () => {
     const cat = c.dataset.cat;
@@ -451,7 +629,7 @@ document.getElementById('start-btn').addEventListener('click', startGame);
 document.getElementById('again-btn').addEventListener('click', startGame);
 document.getElementById('home-btn').addEventListener('click', () => show('home'));
 
-// ─── Game ────────────────────────────────────────────────────────────────────
+// ── Game ──────────────────────────────────────────────────────────────────────
 function startGame() {
   const pool = DB.filter(s => st.cats.has(s.cat));
   if (!pool.length) return;
@@ -466,7 +644,6 @@ function startGame() {
 
 function next() {
   if (st.idx >= st.queue.length) { showResults(); return; }
-
   const q = st.queue[st.idx];
   st.hintUsed = false; st.answered = false; st.waiting = false;
 
@@ -480,6 +657,7 @@ function next() {
   document.getElementById('hint-btn').disabled = false;
   document.getElementById('skip-btn').disabled = false;
   document.getElementById('keys-label').style.display = 'none';
+  document.getElementById('demo').hidden = true;
 
   const sb = document.getElementById('streak-badge');
   if (st.streak >= 3) { sb.style.display = ''; sb.textContent = `x${st.streak} streak`; }
@@ -495,7 +673,6 @@ function next() {
     document.getElementById('capture').value = '';
     document.getElementById('capture').focus();
   }
-
 }
 
 function renderKeys(keys, state) {
@@ -519,12 +696,17 @@ function checkText() {
   const inp = document.getElementById('txt');
   if (!inp || !inp.value.trim()) return;
   const raw = inp.value.trim();
-  const got = norm(raw);
-  const exp = norm(st.queue[st.idx].c);
-  if (got === exp) onCorrect(); else onWrong(`"${raw}"`);
+  if (norm(raw) === norm(st.queue[st.idx].c)) onCorrect(); else onWrong(`"${raw}"`);
 }
 
-// ─── Keyboard capture ────────────────────────────────────────────────────────
+function showDemo(q) {
+  const el = document.getElementById('demo');
+  if (!q.demo) { el.hidden = true; return; }
+  el.innerHTML = q.demo;
+  el.hidden = false;
+}
+
+// ── Keyboard capture ──────────────────────────────────────────────────────────
 const cap = document.getElementById('capture');
 cap.addEventListener('keydown', e => {
   if (screens.game.hidden || st.answered || st.waiting) return;
@@ -536,12 +718,11 @@ cap.addEventListener('keydown', e => {
   if (got === exp) onCorrect(); else onWrong(comboFromEvent(e).replace(/\+/g,' + ').toUpperCase());
 });
 
-// Re-focus capture when clicking anywhere in the game screen
 document.addEventListener('click', () => {
   if (!screens.game.hidden) cap.focus();
 });
 
-// ─── Answer handlers ─────────────────────────────────────────────────────────
+// ── Answer handlers ───────────────────────────────────────────────────────────
 function onCorrect() {
   st.answered = true; st.correct++;
   const mult = st.hintUsed ? 1 : Math.min(1 + st.streak * 0.5, 4);
@@ -553,14 +734,13 @@ function onCorrect() {
   document.getElementById('card').classList.add('correct');
   const fb = document.getElementById('feedback');
   fb.className = 'feedback ok';
-  fb.textContent = st.streak > 1 && !st.hintUsed
-    ? `+${pts} pts   (${st.streak}x streak!)`
-    : `+${pts} pts   correct!`;
+  fb.textContent = st.streak > 1 && !st.hintUsed ? `+${pts} pts  (${st.streak}x streak!)` : `+${pts} pts  correct!`;
   renderKeys(st.queue[st.idx].keys, 'good');
   document.getElementById('score-disp').textContent = st.score;
+  showDemo(st.queue[st.idx]);
 
   st.waiting = true;
-  setTimeout(() => { st.idx++; next(); }, 850);
+  setTimeout(() => { st.idx++; next(); }, 1400);
 }
 
 function onWrong(pressedLabel) {
@@ -573,12 +753,12 @@ function onWrong(pressedLabel) {
   fb.textContent = pressedLabel ? `You pressed: ${pressedLabel}` : 'Not quite.';
 
   const lbl = document.getElementById('keys-label');
-  lbl.style.display = '';
-  lbl.textContent = 'Correct answer:';
+  lbl.style.display = ''; lbl.textContent = 'Correct answer:';
   renderKeys(st.queue[st.idx].keys, 'good');
+  showDemo(st.queue[st.idx]);
 
   st.waiting = true;
-  setTimeout(() => { st.idx++; next(); }, 2200);
+  setTimeout(() => { st.idx++; next(); }, 3000);
 }
 
 document.getElementById('hint-btn').addEventListener('click', () => {
@@ -586,9 +766,10 @@ document.getElementById('hint-btn').addEventListener('click', () => {
   st.hintUsed = true; st.streak = 0;
   document.getElementById('hint-btn').disabled = true;
   document.getElementById('streak-badge').style.display = 'none';
-  const fb = document.getElementById('feedback');
-  fb.className = 'feedback'; fb.textContent = 'Hint — now press it:';
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('feedback').textContent = 'Hint — now press it:';
   renderKeys(st.queue[st.idx].keys, 'good');
+  showDemo(st.queue[st.idx]);
 });
 
 document.getElementById('skip-btn').addEventListener('click', () => {
@@ -600,11 +781,12 @@ document.getElementById('skip-btn').addEventListener('click', () => {
   const lbl = document.getElementById('keys-label');
   lbl.style.display = ''; lbl.textContent = 'Correct answer:';
   renderKeys(st.queue[st.idx].keys, 'good');
+  showDemo(st.queue[st.idx]);
   st.answered = true; st.waiting = true;
-  setTimeout(() => { st.idx++; next(); }, 1500);
+  setTimeout(() => { st.idx++; next(); }, 2500);
 });
 
-// ─── Results ─────────────────────────────────────────────────────────────────
+// ── Results ───────────────────────────────────────────────────────────────────
 function showResults() {
   const total = st.results.length;
   const correct = st.results.filter(r => r.result === 'correct').length;
@@ -619,10 +801,7 @@ function showResults() {
     'Every expert started here.';
 
   const best = parseInt(localStorage.getItem('dojo-best') || '0');
-  if (st.score > best) {
-    localStorage.setItem('dojo-best', st.score);
-    comment += ' New personal best!';
-  }
+  if (st.score > best) { localStorage.setItem('dojo-best', st.score); comment += ' New personal best!'; }
   document.getElementById('comment').textContent = comment;
 
   const cats = {};
