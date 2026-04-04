@@ -291,6 +291,7 @@ h1 { font-size: 2rem; margin-bottom: 6px; }
   <div id="demo" hidden></div>
 
   <div class="feedback" id="feedback"></div>
+  <button class="btn" id="next-btn" hidden style="margin-bottom:10px">Next →</button>
   <div class="action-row">
     <button class="btn ghost" id="hint-btn">Show Hint (breaks streak)</button>
     <button class="btn ghost" id="skip-btn">Skip</button>
@@ -658,6 +659,7 @@ function next() {
   document.getElementById('skip-btn').disabled = false;
   document.getElementById('keys-label').style.display = 'none';
   document.getElementById('demo').hidden = true;
+  document.getElementById('next-btn').hidden = true;
 
   const sb = document.getElementById('streak-badge');
   if (st.streak >= 3) { sb.style.display = ''; sb.textContent = `x${st.streak} streak`; }
@@ -699,6 +701,23 @@ function checkText() {
   if (norm(raw) === norm(st.queue[st.idx].c)) onCorrect(); else onWrong(`"${raw}"`);
 }
 
+function advance() { st.idx++; next(); }
+
+function showNext() {
+  st.waiting = true;
+  const btn = document.getElementById('next-btn');
+  btn.hidden = false;
+  btn.focus();
+}
+
+document.getElementById('next-btn').addEventListener('click', advance);
+
+// Also allow Enter/Space to advance after answering
+document.addEventListener('keydown', e => {
+  if (!st.waiting || screens.game.hidden) return;
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); advance(); }
+});
+
 function showDemo(q) {
   const el = document.getElementById('demo');
   if (!q.demo) { el.hidden = true; return; }
@@ -738,9 +757,7 @@ function onCorrect() {
   renderKeys(st.queue[st.idx].keys, 'good');
   document.getElementById('score-disp').textContent = st.score;
   showDemo(st.queue[st.idx]);
-
-  st.waiting = true;
-  setTimeout(() => { st.idx++; next(); }, 1400);
+  showNext();
 }
 
 function onWrong(pressedLabel) {
@@ -756,9 +773,7 @@ function onWrong(pressedLabel) {
   lbl.style.display = ''; lbl.textContent = 'Correct answer:';
   renderKeys(st.queue[st.idx].keys, 'good');
   showDemo(st.queue[st.idx]);
-
-  st.waiting = true;
-  setTimeout(() => { st.idx++; next(); }, 3000);
+  showNext();
 }
 
 document.getElementById('hint-btn').addEventListener('click', () => {
@@ -782,8 +797,8 @@ document.getElementById('skip-btn').addEventListener('click', () => {
   lbl.style.display = ''; lbl.textContent = 'Correct answer:';
   renderKeys(st.queue[st.idx].keys, 'good');
   showDemo(st.queue[st.idx]);
-  st.answered = true; st.waiting = true;
-  setTimeout(() => { st.idx++; next(); }, 2500);
+  st.answered = true;
+  showNext();
 });
 
 // ── Results ───────────────────────────────────────────────────────────────────
